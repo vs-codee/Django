@@ -1,0 +1,43 @@
+{%extends 'shop/basic.html' %}
+{% block title %}
+Product
+{% endblock title %}
+{% block body %}
+{% block css %}
+  <style>
+      .main
+      {
+          padding-top: 20px;
+      }
+      .someimage
+      {
+        background-image: linear-gradient(to right, rgb(88, 211, 211), rgb(75, 89, 151));
+        height: 500px;
+        width:500px;
+      }
+      .image
+      {
+        
+        height: 200px;
+        width:200px;
+      }
+  </style>
+{% endblock css %}
+<!-- <h1>You are watching {{product.id}}-- product</h1> -->
+<div style="" class=" main row">
+<!-- <div class="container"> -->
+    <div class="someimage col-md-4">
+        <div>
+            <img class="image" src="/media/{{product.image}}" alt="Not showing"> 
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h1>{{product.product_name}}</h1>
+        <h2><b>Rs. {{product.price}}</b></h2>
+        <h3>{{product.desc}}</h3>
+        {{product.desc}}
+    </div>
+<!-- </div> -->
+</div>
+{% endblock body %}

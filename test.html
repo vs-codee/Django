@@ -12,7 +12,6 @@
 
     <title>Carousel Slidere</title>
 </head>
-
 <body>
     <h1 id="h1">Hello, world!</h1>
     <h1>Another Hello World </h1>
@@ -84,10 +83,27 @@
             });
         }
     };
-    obj.show();
+    let m=Math;
+    let a=1;
+    let b=100;
+    console.log(a+(b-a)*Math.random());
+
+    let jsonobj={
+        name:"YASH",
+        channel:"codedebug",
+        friend:"sarthak",
+        food:"Paneer" //Paneer Lover
+    }
+    console.log(jsonobj);
+    let json=JSON.stringify(jsonobj);
+    console.log(json);
+    
+    
+    let hello="SOMETHIGN";
     
     function magic()
     {
+        console.log(hello);
         let cart = {};
         cart[1] = 12;
         cart[2] = 2;
@@ -95,6 +111,8 @@
         item = 2;
         updatecart(cart)
     }
+    // magic();
+    console.log(hello);
     function updatecart(cart) {
             for (i in cart) {
                 document.getElementById(`${i}`).innerHTML = `<button id='minus${i}' class='btn btn-primary minus'>-</button> <span id='val${i}'> ${cart[i]} </span> <button id='plus${i}' class='btn btn-primary plus'>+</button>`;

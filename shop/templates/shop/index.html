@@ -73,8 +73,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{i.product_name}}</h5>
                   <p class="card-text">{{i.desc|slice:"0:50"}} </p>
-                  <span id="div{{i.id}}">
-                  <button id="pr{{i.id}}" onclick="addtocart"  href="#" class="btn btn-primary cart">Add to Cart{{i.id}}</button>
+                  <span id="divpr{{i.id}}" class="divpr">
+                  <button id="pr{{i.id}}"   href="#" class="btn btn-primary cart">Add to Cart</button>
                   </span>
                   <a href="/shop/productview/{{i.id}}"><button id="qv{{i.id}}" href="#" class="btn btn-primary cart">Quick View</button></a>
                   
@@ -106,52 +106,63 @@
 {%block js%}
 <script>
 
-  let cart = {};
-  if(localStorage.getItem('cart')==null)
-  {}
-  else
-  {
-    cart=JSON.parse(localStorage.getItem('cart'));
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+}
+else {
+    cart = JSON.parse(localStorage.getItem('cart'));
     document.getElementById('cart').innerHTML = Object.keys(cart).length;
     updatecart(cart);
   }
 
-  // $('.cart').click(function(){
-  //   let ans = 0;
-  //   let idstr=this.id.toString();
-  //   console.log(idstr);
-  //   if(cart[idstr]!=undefined)
-  //     cart[idstr]+=1;
-  //   else
-  //     cart[idstr]=1;
-  //   updatecart(cart);
-  // })
-  // $('#popcart').popover()
-  // document.getElementById("popcart").setAttribute('data-content','<h5>This is Your Cart</h5>');
+$('.cart').click(function(){
+  let ans = 0;
+  let idstr=this.id.toString();
+  console.log(idstr);
+  if(cart[idstr]!=undefined)
+  cart[idstr]+=1;
+  else
+  cart[idstr]=1;
+  console.log(cart);
+  updatecart(cart);
+})
 
 
-  // function updatecart(cart) {
-  //   // console.log(cart);
-  //   for (let item in cart) {
-  //    document.getElementById(`pr${item}`).innerHTML = `<button id='minus${item}' class='btn btn-primary minus'>-</button> <span id='val${item}'> ${cart[item]} </span> <button id='plus${item}' class='btn btn-primary plus'>+</button>`;
-  //   }
-    // localStorage.setItem('cart', JSON.stringify(cart));
-    // document.getElementById('cart').innerHTML = Object.keys(cart).length;
-    // console.log(cart);
+function updatepopover()
+{
+  
+}
+
+function updatecart(cart)
+{   
+  for(let i in cart)
+  {
+    document.getElementById(`div${i}`).innerHTML = `<button id='minus${i}' class='btn btn-primary minus '>-</button> <span id='val'> ${cart[i]} </span id='val${i}'> <button id='plus${i}' class='btn btn-primary plus '>+</button>`;
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  document.getElementById('cart').innerHTML = Object.keys(cart).length;
+} 
+$('#popcart').popover()
+document.getElementById("popcart").setAttribute('data-content','<h5>This is Your Cart</h5>');
 
 
-// $('.divpr').on("click", "button.minus", function () {
-//   a = this.id.slice(4);
-//   cart[a] = Math.max(0, cart[ a]);
-//   document.getElementById('val' + a).innerHTML = cart[a];
-//   updatecart(cart);
-// });
-// $('.divpr').on("click", "button.plus", function () {
-//   a = this.id.slice(4);
-//   cart[a] = cart[a] + 1;
-//   document.getElementById('val' + a).innerHTML = cart[a];
-//   updatecart(cart);
-// });
+$('.divpr').on("click", "button.minus", function () {
+  a = this.id.slice(5,);
+  console.log(a);
+  cart[a]=cart[a]-1;
+  cart[a] = Math.max(0, cart[a]);
+  // document.getElementById('val' + a).innerHTML = cart[a];
+  updatecart(cart);
+});
+
+
+$('.divpr').on("click", "button.plus", function () {
+  a = this.id.slice(4,);
+  console.log(a);
+  cart[a] = cart[a] + 1;
+  // document.getElementById('val' + a).innerHTML = cart[a];
+  updatecart(cart);
+});
 
   
   

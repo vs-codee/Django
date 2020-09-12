@@ -41,6 +41,17 @@
     padding-right: 0;
     }
 
+    <!-- .addtocartbutton {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    } -->
 {%endblock%}
     
 {%block body%}
@@ -116,15 +127,15 @@ else {
   }
 
 $('.cart').click(function(){
-  let ans = 0;
-  let idstr=this.id.toString();
-  console.log(idstr);
-  if(cart[idstr]!=undefined)
-  cart[idstr]+=1;
-  else
-  cart[idstr]=1;
-  console.log(cart);
-  updatecart(cart);
+	let ans = 0;
+	let idstr=this.id.toString();
+	console.log(idstr);
+	if(cart[idstr]!=undefined)
+	cart[idstr]+=1;
+	else
+	cart[idstr]=1;
+	console.log(cart);
+	updatecart(cart);
 })
 
 
@@ -134,23 +145,26 @@ $('.cart').click(function(){
 $('#popcart').popover();
 function updatepopover(cart)
 {
-  var popStr="";
-  var i=1;
-  popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div>";
-  for(let item in cart)
-  {
-    popStr=popStr + `<b>${i}. </b>`;
-    let pop=document.getElementById(`title${item}`).innerText;
-    popStr = popStr + pop + `<br> Qty: <b>${cart[item]}</b><br>`;
-    i++;
-  }
-  console.log(cart);
-  //  document.getElementById('popcart').setAttribute('data-content', "This is your cart");
-  popStr+='</div>';              
-  popStr += '<button type="button" class="btn btn-dark">Dark</button>';
-  document.getElementById('popcart').setAttribute('data-content',popStr);
-  console.log(popStr);
-  $('#popcart').popover();
+	var popStr="";
+	// var i=1;
+	// popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div>";
+	// for(let item in cart)
+	// {
+	// 	popStr=popStr + `<b>${i}. </b>`;
+	// 	let pop=document.getElementById(`title${item}`).innerText;
+	// 	popStr = popStr + pop + `<br> Qty: <b>${cart[item]}</b><br>`;
+	// 	i++;
+	// }
+	// console.log(cart);
+	// //  document.getElementById('popcart').setAttribute('data-content', "This is your cart");
+	// popStr+='</div>';              
+	// popStr+="There is some problem and i can't figure it out right now";
+	// popStr += '<button class="addtocartbutton">Green</button>';
+  popStr+='<h1>This is A cart Button</h1>'
+  popStr+=`<a href="#" class="badge badge-primary">Primary</a>`;
+	document.getElementById('popcart').setAttribute('data-content',popStr);
+	console.log(popStr);
+	$('#popcart').popover();
 }
 
 //harry function
@@ -174,12 +188,12 @@ function updatepopover(cart)
 
 emptycart = (cart) => 
 {
-  for(let i in cart)
-  {
-    document.getElementById('div'+i).innerHTML=`<button id='${i}' href="#" class="btn btn-primary cart">Add to Cart</button>`;
-  } 
-  localStorage.clear();
-  
+	for(let i in cart)
+	{
+		document.getElementById('div'+i).innerHTML=`<button id='${i}' href="#" class="btn btn-primary cart">Add to Cart</button>`;
+	} 
+	localStorage.clear();
+	
 }
 
 function updatecart(cart)
@@ -194,21 +208,21 @@ function updatecart(cart)
 }
 
 $('.divpr').on("click", "button.minus", function () {
-  a = this.id.slice(5,);
-  console.log(a);
-  cart[a]=cart[a]-1;
-  cart[a] = Math.max(0, cart[a]);
-  // document.getElementById('val' + a).innerHTML = cart[a];
-  updatecart(cart);
+	a = this.id.slice(5,);
+	console.log(a);
+	cart[a]=cart[a]-1;
+	cart[a] = Math.max(0, cart[a]);
+	// document.getElementById('val' + a).innerHTML = cart[a];
+	updatecart(cart);
 });
 
 
 $('.divpr').on("click", "button.plus", function () {
-  a = this.id.slice(4,);
-  console.log(a);
-  cart[a] = cart[a] + 1;
-  // document.getElementById('val' + a).innerHTML = cart[a];
-  updatecart(cart);
+	a = this.id.slice(4,);
+	console.log(a);
+	cart[a] = cart[a] + 1;
+	// document.getElementById('val' + a).innerHTML = cart[a];
+	updatecart(cart);
 });
 
   

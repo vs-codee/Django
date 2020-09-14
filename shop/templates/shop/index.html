@@ -41,6 +41,17 @@
     padding-right: 0;
     }
 
+    <!-- .addtocartbutton {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    } -->
 {%endblock%}
     
 {%block body%}
@@ -116,15 +127,15 @@ else {
   }
 
 $('.cart').click(function(){
-  let ans = 0;
-  let idstr=this.id.toString();
-  console.log(idstr);
-  if(cart[idstr]!=undefined)
-  cart[idstr]+=1;
-  else
-  cart[idstr]=1;
-  console.log(cart);
-  updatecart(cart);
+	let ans = 0;
+	let idstr=this.id.toString();
+	console.log(idstr);
+	if(cart[idstr]!=undefined)
+	cart[idstr]+=1;
+	else
+	cart[idstr]=1;
+	console.log(cart);
+	updatecart(cart);
 })
 
 
@@ -163,7 +174,6 @@ function clearcart()
     document.getElementById('div'+i).innerHTML=`<button id='${i}' href="#" class="btn btn-primary cart">Add to Cart</button>`;
   }
   localStorage.clear();
-  // updatecart(cart);
 }
 
 
@@ -181,21 +191,21 @@ function updatecart(cart)
 
 
 $('.divpr').on("click", "button.minus", function () {
-  a = this.id.slice(5,);
-  console.log(a);
-  cart[a]=cart[a]-1;
-  cart[a] = Math.max(0, cart[a]);
-  // document.getElementById('val' + a).innerHTML = cart[a];
-  updatecart(cart);
+	a = this.id.slice(5,);
+	console.log(a);
+	cart[a]=cart[a]-1;
+	cart[a] = Math.max(0, cart[a]);
+	// document.getElementById('val' + a).innerHTML = cart[a];
+	updatecart(cart);
 });
 
 
 $('.divpr').on("click", "button.plus", function () {
-  a = this.id.slice(4,);
-  console.log(a);
-  cart[a] = cart[a] + 1;
-  // document.getElementById('val' + a).innerHTML = cart[a];
-  updatecart(cart);
+	a = this.id.slice(4,);
+	console.log(a);
+	cart[a] = cart[a] + 1;
+	// document.getElementById('val' + a).innerHTML = cart[a];
+	updatecart(cart);
 });
 
   

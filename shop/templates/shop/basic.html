@@ -41,14 +41,14 @@
                 
             </ul>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <button onclick="clearcart()" class="btn btn-outline-success mx-2 my-2 my-sm-0" type="submit">ClearCart</button>
-            </li>
+            </!--> -->
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <button id="popcart" type="button" class="btn btn-secondary mx-2" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Your Shopping Cart List">
+            <button id="popcart" type="button" class="btn btn-secondary mx-2" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content='<div class="deletecart"><a href="#" id="dcart" class="delete badge badge-dark mx-5 my-2">ClearCart</a><a href="{% url "checkout" %}" " class=" badge badge-success my-2">Checkout</a></div>'>
                 Cart <span id="cart" class="badge badge-light">0</span>
             </button>
         </div>

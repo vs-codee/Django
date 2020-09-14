@@ -147,40 +147,25 @@ function updatepopover(cart)
   console.log(cart);
   //  document.getElementById('popcart').setAttribute('data-content', "This is your cart");
   popStr+='</div>';              
-  popStr += '<button type="button" class="btn btn-dark">Dark</button>';
+  popStr += '<a href="#" class="badge badge-dark mx-5 my-2">Checkout</a>';
+  popStr+='<a href="#" class=" clear badge badge-primary">ClearCart</a>';
   document.getElementById('popcart').setAttribute('data-content',popStr);
   console.log(popStr);
   $('#popcart').popover();
 }
 
-//harry function
 
-// function updatepopover(cart) {
-//   console.log('We are inside updatePopover');
-//   var popStr = "";
-//   popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
-//   var i = 1;
-//   for (var item in cart) {
-//     popStr = popStr + "<b>" + i + "</b>. ";
-//     popStr = popStr + document.getElementById('title' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item] + '<br>';
-//     i = i + 1;
-//   }
-//   popStr = popStr + "</div> <a href='/shop/checkout'><button class='btn btn-primary' id ='checkout'>Checkout</button></a> <button class='btn btn-primary' id ='clearCart'>Clear Cart</button>     "
-//   console.log(popStr);
-//   document.getElementById('popcart').setAttribute('data-content', popStr);
-//   $('#popcart').popover('show');
-// }
-
-
-emptycart = (cart) => 
+// $('.clearcart()').click(function(cart)
+function clearcart()
 {
   for(let i in cart)
   {
     document.getElementById('div'+i).innerHTML=`<button id='${i}' href="#" class="btn btn-primary cart">Add to Cart</button>`;
-  } 
+  }
   localStorage.clear();
-  
+  // updatecart(cart);
 }
+
 
 function updatecart(cart)
 {   
@@ -192,6 +177,8 @@ function updatecart(cart)
   document.getElementById('cart').innerHTML = Object.keys(cart).length;
   updatepopover(cart);
 }
+
+
 
 $('.divpr').on("click", "button.minus", function () {
   a = this.id.slice(5,);

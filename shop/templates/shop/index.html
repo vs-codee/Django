@@ -106,8 +106,7 @@
 				  <span id="divpr{{i.id}}" class="divpr">
 				  <button id="pr{{i.id}}"   href="#" class="btn btn-primary cart">Add to Cart</button>
 				  </span>
-				  <a href="/shop/productview/{{i.id}}"><button id="qv{{i.id}}" href="#" class="btn btn-primary cart">Quick View</button></a>
-				  
+				  <a href="/shop/productview/{{i.id}}"><button id="qv{{i.id}}" href="#" class="btn btn-primary cart">Quick View</button></a>				  				  
 				</div>
 			  </div>
 			</div>
@@ -115,7 +114,7 @@
 			{% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
 			 </div><div class="carousel-item">
 			{% endif%}
-
+				
 			{% endfor %}
 	  </div>
 
@@ -148,9 +147,7 @@ else {
 $('.cart').click(function(){
 	let ans = 0;
 	let idstr=this.id.toString();
-	console.log(idstr);
 	let name=document.getElementById(`title${idstr}`).innerText;
-	// console.log(name)
 	if(cart[idstr]==undefined)
 		cart[idstr]=[1,name];
 	else
@@ -199,7 +196,17 @@ function updatecart(cart)
 {   
   for(let i in cart)
   {
-	document.getElementById(`div${i}`).innerHTML = `<button id='minus${i}' class='btn btn-primary minus '>-</button> <span id='val'> ${cart[i][0]} </span id='val${i}'> <button id='plus${i}' class='btn btn-primary plus '>+</button>`;
+	if(cart[i][0]==0)
+	{
+		document.getElementById(`div${i}`).innerHTML=`<span id="divpr${i}" class="divpr">
+				<button id="pr${i}"   href="#" class="btn btn-primary cart">Add to Cart</button>
+				</span>`;
+	}
+	else
+	{
+		document.getElementById(`div${i}`).innerHTML = `<button id='minus${i}' class='btn btn-primary minus '>-</button> <span id='val'> ${cart[i][0]} </span id='val${i}'> <button id='plus${i}' class='btn btn-primary plus '>+</button>`;
+
+	}
   }
   localStorage.setItem('cart', JSON.stringify(cart));
   document.getElementById('cart').innerHTML = Object.keys(cart).length;
@@ -213,7 +220,6 @@ $('.divpr').on("click", "button.minus", function () {
 	console.log(a);
 	cart[a][0]=cart[a][0]-1;
 	cart[a][0] = Math.max(0, cart[a][0]);
-	// document.getElementById('val' + a).innerHTML = cart[a];
 	updatecart(cart);
 });
 
@@ -222,7 +228,6 @@ $('.divpr').on("click", "button.plus", function () {
 	a = this.id.slice(4,);
 	console.log(a);
 	cart[a][0] = cart[a][0] + 1;
-	// document.getElementById('val' + a).innerHTML = cart[a];
 	updatecart(cart);
 });
 
